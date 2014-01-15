@@ -59,8 +59,10 @@ describe SortedArray do
 
   describe :find do
   it  "When you find a value, should return the value that you're looking for" do
-     sorted_array.find(2).should == 2
-     sorted_array.find(90).should == nil
+     sorted_array.find { |x| x % 2 != 0 }.should == 3
+     # sorted_array.find { |x| x == 2}.should == 3
+     sorted_array.find { |x| x == 100}.should == nil
+     # sorted_array.find(90).should == nil
       # pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-find"
     end
 end
