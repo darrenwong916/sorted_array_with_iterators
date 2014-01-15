@@ -38,11 +38,31 @@ class SortedArray
   end
 
   def each &block
-    raise NotImplementedError.new("You need to implement the each method!")
+    i = 0
+    while i < @internal_arr.size
+      yield @internal_arr[i]
+      i+=1
+    end
+    @internal_arr
   end
 
   def map &block
-    raise NotImplementedError.new("You need to implement the map method!")
+    i = 0
+    while i < @internal_arr.size
+    new_array = @internal_arr.each {|el| el * 2 }
+    yield
+     i+1
+    end
+
+    # new_array = []
+    # map_block = @internal_arr.map {|el| el}
+    # new_array<< map_block
+    # yield 
+    # return new_array.flatten!
+
+
+    # map_block = Proc.new {|el| el}
+    # yield map_block.map(@internal_arr) {|el| el}
   end
 
   def map! &block
@@ -50,10 +70,12 @@ class SortedArray
   end
 
   def find value
-    raise NotImplementedError.new("You need to implement the find method!")
+    @internal_arr.each_with_index.select { |num, index| num > 0}.map { |pair| pair[1] }
+    #compare exessive elements in the array
   end
 
   def inject acc=nil, &block
     raise NotImplementedError.new("You need to implement the inject method!")
   end
 end
+
