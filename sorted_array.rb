@@ -47,13 +47,19 @@ class SortedArray
   end
 
   def map &block
-    i = 0
-    while i < @internal_arr.size
-    new_array = @internal_arr.each {|el| el * 2 }
-    yield
-     i+1
+    # new_array = []
+    # i = 0
+    # while i == @internal_arr.size
+    # new_array << (yield @internal_arr[i]) 
+    # i+=1
+    #  end
+  i = 0
+    until i == @internal_arr.size
+      yield @internal_arr[i]
+    # new_array << self.each { |el| + 1 }
+    i+=1
     end
-
+  end
     # new_array = []
     # map_block = @internal_arr.map {|el| el}
     # new_array<< map_block
@@ -63,14 +69,28 @@ class SortedArray
 
     # map_block = Proc.new {|el| el}
     # yield map_block.map(@internal_arr) {|el| el}
-  end
 
   def map! &block
-    raise NotImplementedError.new("You need to implement the map! method!")
-  end
+    new_array = []
+    i = 0
+    while i == @internal_arr.size
+    new_array << (yield @internal_arr[i]) 
+    i+=1
+    end
+    return new_array
+end
 
   def find value
-    @internal_arr.each_with_index.select { |num, index| num > 0}.map { |pair| pair[1] }
+    i = 0 
+    self.each do |x|
+      if value == x
+        return value
+      else
+      i+=1
+    end
+  end
+  return nil
+    # @internal_arr.each_with_index.select { |num, index| num > 0}.map { |pair| pair[1] }
     #compare exessive elements in the array
   end
 

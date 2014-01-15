@@ -43,27 +43,27 @@ describe SortedArray do
     describe "that update the original array" do
       describe :map! do
         it 'the original array should be updated' do
-          pending "fill this spec in with a meaningful example"
+          original_array = sorted_array.internal_arr
+          expect {sorted_array.map! { |el| el +1}} == [3,4,5,8,10]
         end
 
         it_should_behave_like "yield to all elements in sorted array", :map!
 
         it 'should replace value of each element with the value returned by block' do
-          pending "this is just the same as the example above"
+          original_array = sorted_array.internal_arr
+          expect  { sorted_array.map! { |el| el + 1}} == [3,4,5,8,10]
         end
       end
     end
   end
 
   describe :find do
-
-    it "Finds consecutive values in the array" do
-      original_array = [3,1,2,3]
-      expect original_array == [1,2,3,3]
+  it  "When you find a value, should return the value that you're looking for" do
+     sorted_array.find(2).should == 2
+     sorted_array.find(90).should == nil
       # pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-find"
     end
-  end
-
+end
   describe :inject do
 
     it "does not currently have any examples for it" do
